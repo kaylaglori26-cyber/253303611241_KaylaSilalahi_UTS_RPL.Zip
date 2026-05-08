@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Papan Tinggi - Wisata Religi</title>
+    <!-- Pastikan file CSS sesuai dengan nama di bawah -->
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Playfair+Display:wght@700;900&display=swap" rel="stylesheet">
+    <style>
+      /* Menggunakan variabel warna dari source 10 */
+:root {
+    --primary: #762d7a;
+    --dark: #280d2b;
+    --light: #fdeffb;
+    --kuning: #f542ec;
+}
+
+/* LAYAR LOGIN OVERLAY */
+#login-overlay {
+    position: fixed;
+    inset: 0;
+    background: var(--dark);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+}
+
+.login-card {
+    background: white;
+    padding: 3rem;
+    border-radius: 20px;
+    text-align: center;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+}
+
+/* CSS asli Anda dari source 10 tetap di bawah sini */
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'DM Sans', sans-serif; background: var(--light); color: #333333; line-height: 1.6; }
+
+nav {
+    position: fixed; top:0; width: 100%; height: 70px;
+    background: rgba(40, 13, 43, 0.95); display: flex;
+    justify-content: space-between; align-items: center; padding: 0 5%;
+    z-index: 1000; backdrop-filter: blur(10px);
+}
+.logo-text { font-family: 'Playfair Display', serif; color: white; font-weight: 900; font-size: 1.4rem; }
+.logo-text span { color: var(--kuning); }
+.nav-menu { display: flex; list-style: none; gap: 20px; align-items: center; }
+.nav-menu a { color: white; text-decoration: none; font-size: 0.9rem; }
+.nav-cta { background: var(--kuning); color: var(--dark) !important; padding: 8px 20px; border-radius: 50px; font-weight: bold; }
+
+.hero {
+    height: 100vh;
+    background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('foto 6.jpeg') center/cover;
+    display: flex; align-items: center; justify-content: center; text-align: center; color: white;
+}
+.hero h1 { font-family: 'Playfair Display', serif; font-size: 4rem; margin-bottom: 20px; }
+.hero h1 em { color: var(--kuning); font-style: normal; }
+.btn-primary { background: var(--kuning); color: var(--dark); padding: 15px 35px; text-decoration: none; border-radius: 50px; font-weight: bold; }
+
+.section { padding: 80px 5%; }
+.section-dark { padding: 80px 5%; background: var(--dark); color: white; }
+.text-center { text-align: center; margin-bottom: 40px; }
+.section-title { font-family: 'Playfair Display', serif; font-size: 2.5rem; }
+
+.tiket-container { display: flex; gap: 20px; justify-content: center; flex-wrap: wrap; }
+.tiket-card { background: white; padding: 40px; border-radius: 20px; text-align: center; width: 300px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); }
+.price { font-size: 2rem; font-weight: bold; color: var(--primary); margin: 10px 0; }
+
+.gallery-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 15px; }
+.gal-item { height: 250px; border-radius: 10px; overflow: hidden; }
+.gal-item img { width: 100%; height: 100%; object-fit: cover; transition: 0.4s; }
+.gal-item:hover img { transform: scale(1.1); }
+
+.form-wrapper { max-width: 900px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
+.form-card { background: white; padding: 30px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05); }
+.form-card input, .form-card select { width: 100%; padding: 12px; margin-bottom: 15px; border: 1px solid var(--dark); border-radius: 8px; }
+.btn-submit { width: 100%; background: var(--primary); color: white; border: none; padding: 15px; border-radius: 8px; cursor: pointer; font-weight: bold; }
+
+footer { text-align: center; padding: 40px; background: #eeeeee; font-size: 0.8rem; }
+
+/* Tambahkan kode ini di bagian bawah style.css Anda */
+
+.login-card .logo-text {
+    color: var(--primary) !important; /* Mengubah 'Papan' menjadi primary */
+    margin-bottom: 10px;
+    display: block;
+}
+
+.login-card .logo-text span {
+    color: var(--primary); /* Warna untuk kata 'Tinggi' */
+}
+
+/* GAYA UNTUK MODAL PEMBAYARAN */
+.payment-overlay {
+    position: fixed; inset: 0;
+    background: rgba(0, 0, 0, 0.85);
+    display: flex; align-items: center; justify-content: center;
+    z-index: 3000;
+}
+
+.payment-card {
+    background: white; padding: 30px;
+    border-radius: 20px; width: 90%; max-width: 400px;
+    text-align: center; color: var(--dark);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+}
+
+.bank-box {
+    background: var(--light);
+    padding: 15px; border-radius: 12px;
+    margin: 15px 0; border: 1px dashed var(--primary);
+    font-size: 1.1rem;
+}
+
+#detail-pesanan { 
+    font-size: 0.9rem; margin: 15px 0; 
+    text-align: left; background: #f9f9f9; padding: 10px; border-radius: 8px;
+}  
+    </style>
+</head>
+<body onload="checkLoginStatus()">
+
+    <!-- BAGIAN LOGIN: Muncul pertama kali -->
+    <div id="login-overlay">
+        <div class="login-card">
+            <h2 class="logo-text">Papan<span>Tinggi</span></h2>
+            <p style="margin-bottom: 1.5rem; opacity: 0.8;">Admin Authentication</p>
+            <div class="form-card" style="box-shadow: none; padding: 0;">
+                <input type="text" id="adminUser" placeholder="Username">
+                <input type="password" id="adminPass" placeholder="Password">
+                <button onclick="loginAction()" class="btn-submit">Masuk ke Website</button>
+                <p id="login-error" style="color: #f542ec; display: none; margin-top: 10px; font-size: 0.8rem;">Kredensial Salah!</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- KONTEN UTAMA: Tersembunyi sebelum login -->
+    <div id="main-website" style="display: none;">
+        <nav id="navbar">
+            <a href="#" class="nav-logo">
+                <span class="logo-text">Papan<span>Tinggi</span></span>
+            </a>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#beranda">Beranda</a></li>
+                <li><a href="#tiket">Tiket</a></li>
+                <li><a href="#galeri">Galeri</a></li>
+                <li><a href="https://maps.app.goo.gl/czbxYgpsZhAa9Lxn9?g_st=aw" target="_blank" class="nav-loc">📍 Lokasi</a></li>
+                <!-- Tombol Logout -->
+                <li><button onclick="logoutAction()" class="nav-cta" style="border:none; cursor:pointer;">Logout</button></li>
+            </ul>
+            <div class="hamburger" onclick="toggleMenu()">
+                <span></span><span></span><span></span>
+            </div>
+        </nav>
+
+        <section class="hero" id="beranda">
+            <div class="hero-content">
+                <div class="hero-badge"> Wisata Religi Papan Tinggi</div>
+                <h1>Sejarah Islam<br><em>Papan Tinggi</em></h1>
+                <a href="#kontak" class="btn-primary">Hubungi Pengelola</a>
+            </div>
+        </section>
+
+        <!-- Bagian Tiket, Galeri, dan Kontak tetap seperti aslinya -->
+        <section id="tiket" class="section">
+            <div class="text-center">
+                <span class="section-tag">Retribusi</span>
+                <h2 class="section-title">Harga Parkir</h2>
+            </div>
+            <div class="tiket-container">
+                <div class="tiket-card"><h3>Sepeda Motor</h3><div class="price">Rp 5.000</div></div>
+                <div class="tiket-card"><h3>Mobil / SUV</h3><div class="price">Rp 10.000</div></div>
+                <div class="tiket-card"><h3>Minibus / Elf</h3><div class="price">Rp 15.000</div></div>
+                <div class="tiket-card"><h3>Bus Pariwisata</h3><div class="price">Rp 20.000</div></div>
+            </div>
+        </section>
+
+        <section id="galeri" class="section-dark">
+            <div class="text-center">
+                <h2 class="section-title">Galeri Wisata Religi</h2>
+                <p>Keindahan Sejarah Islam Wisata Religi Papan Tinggi</p>
+            </div>
+            <div class="gallery-grid">
+                <!-- Data foto Anda sesuai source 8 -->
+                <div class="gal-item"><img src="foto 1.webp" alt="Alam 1"></div>
+                <div class="gal-item"><img src="foto 2.jpg" alt="Alam 2"></div>
+                <div class="gal-item"><img src="foto 3.jpg" alt="Alam 3"></div>
+                <div class="gal-item"><img src="foto 4.jpg" alt="Alam 4"></div>
+                <div class="gal-item"><img src="foto 5.jpg" alt="Alam 5"></div>
+                <div class="gal-item"><img src="foto 6.jpeg" alt="Alam 6"></div>
+                <div class="gal-item"><img src="foto 7.jpeg" alt="Alam 7"></div>
+                <div class="gal-item"><img src="foto 8.jpeg" alt="Alam 8"></div>
+                <div class="gal-item"><img src="foto 9.jpeg" alt="Alam 9"></div>
+                <div class="gal-item"><img src="foto 10.jpeg" alt="Alam 10"></div>
+                <div class="gal-item"><img src="foto 11.jpeg" alt="Alam 11"></div>
+                <div class="gal-item"><img src="foto 12.jpeg" alt="Alam 12"></div>
+            </div>
+        </section>
+
+        <section id="kontak" class="section">
+            <div class="form-wrapper">
+                <div class="form-info">
+                    <h2 class="section-title">Reservasi Kunjungan</h2>
+                    <p>Pastikan rencana kunjungan Anda terkoordinasi dengan pengelola kawasan.</p>
+                </div>
+                <div class="form-card">
+                    <input type="text" id="nama" placeholder="Nama Lengkap">
+                    <input type="tel" id="wa" placeholder="Nomor WhatsApp">
+                    <select id="kebutuhan">
+                        <option value="">Pilih Kebutuhan</option>
+                        <option>Hanya Kunjungan</option>
+                        <option>Berwisata</option>
+                    </select>
+                    <input type="date" id="tgl">
+                    <button onclick="kirimForm()" class="btn-submit">Kirim Sekarang</button>
+                </div>
+            </div>
+        </section>
+
+        <div id="payment-modal" class="payment-overlay" style="display: none;">
+    <div class="payment-card">
+        <h3>Konfirmasi Pembayaran</h3>
+        <div id="detail-pesanan"></div>
+        <hr>
+        <p>Silakan transfer biaya retribusi ke:</p>
+        <div class="bank-box">
+            <strong>DANA</strong><br>
+            085361708714<br>
+            A/N Kayla Natalin Glori Silalahi
+        </div>
+        <p style="font-size: 0.8rem; color: #666; margin-bottom: 15px;">
+            Setelah transfer, klik tombol di bawah untuk verifikasi otomatis.
+        </p>
+        <button onclick="konfirmasiBayar()" class="btn-submit">Saya Sudah Bayar</button>
+        <button onclick="tutupPembayaran()" style="background:none; border:none; color:gray; margin-top:10px; cursor:pointer;">Batalkan</button>
+    </div>
+</div>
+
+<section class="section-dark" style="padding: 40px 5%; border-top: 1px solid #444;">
+    <div class="text-center">
+        <h3 style="margin-bottom: 20px;">Hubungi Admin Resmi</h3>
+        <p>📱 WhatsApp: <a href="https://wa.me/085361708714" style="color: var(--kuning);">0853-6170-8714</a></p>
+        <p>📧 Email: <a href="mailto:kaylaglori26@gmail.com" style="color: var(--kuning);">kaylaglori@gmail.com</a></p>
+    </div>
+</section>
+
+<script src="javaSricp2.js"></script>
+
+        <footer>
+            <p>&copy; 2026 Papan Tinggi Nature. All rights reserved.</p>
+        </footer>
+    </div>
+<script>
+  // --- SISTEM AUTENTIKASI ---
+function checkLoginStatus() {
+    const status = localStorage.getItem("isLoggedIn");
+    if (status === "true") {
+        showMainWebsite();
+    }
+}
+
+function loginAction() {
+    const user = document.getElementById('adminUser').value;
+    const pass = document.getElementById('adminPass').value;
+
+    // Username: kayla | Password: 2626
+    if (user === "kayla" && pass === "2626") {
+        localStorage.setItem("isLoggedIn", "true");
+        showMainWebsite();
+    } else {
+        document.getElementById('login-error').style.display = "block";
+    }
+}
+
+function showMainWebsite() {
+    document.getElementById('login-overlay').style.display = "none";
+    document.getElementById('main-website').style.display = "block";
+    document.body.style.overflow = "auto"; // Aktifkan scroll
+}
+
+function logoutAction() {
+    if(confirm("Apakah Anda ingin keluar?")) {
+        localStorage.removeItem("isLoggedIn");
+        location.reload(); // Refresh untuk kembali ke layar login
+    }
+}
+
+// --- FUNGSI WEBSITE ASLI (Source 9) ---
+function toggleMenu() {
+    const menu = document.getElementById('navMenu');
+    if (menu.style.display === "flex") {
+        menu.style.display = "none";
+    } else {
+        menu.style.display = "flex";
+        menu.style.flexDirection = "column";
+        menu.style.position = "absolute";
+        menu.style.top = "70px"; menu.style.left = "0";
+        menu.style.width = "100%"; menu.style.background = "#280d2b";
+        menu.style.padding = "20px";
+    }
+}
+
+function kirimForm() {
+    const nama = document.getElementById('nama').value;
+    const wa = document.getElementById('wa').value;
+    const keb = document.getElementById('kebutuhan').value;
+    const tgl = document.getElementById('tgl').value;
+
+    if(!nama || !wa || !keb || !tgl) {
+        alert("Harap lengkapi semua data!"); return;
+    }
+
+    const pesan = `Halo Pengelola Papan Tinggi,%0A%0ASaya ingin berkunjung:%0ANama: ${nama}%0AKebutuhan: ${keb}%0ATanggal: ${tgl}`;
+    window.open(`https://wa.me/6282100000000?text=${pesan}`, '_blank');
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+    const tglInput = document.getElementById('tgl');
+    if(tglInput) {
+        const today = new Date().toISOString().split("T")[0];
+        tglInput.setAttribute('min', today);
+    }
+});
+
+// Ubah baris ini di javaSricp.js
+if (user === "kayla" && pass === "2626") { 
+    localStorage.setItem("isLoggedIn", "true");
+    showMainWebsite();
+}
+
+// Ganti fungsi kirimForm lama dengan kode ini
+function kirimForm() {
+    const nama = document.getElementById('nama').value;
+    const wa = document.getElementById('wa').value;
+    const keb = document.getElementById('kebutuhan').value;
+    const tgl = document.getElementById('tgl').value;
+
+    if(!nama || !wa || !keb || !tgl) {
+        alert("Harap lengkapi semua data!");
+        return;
+    }
+
+    // Tampilkan rincian di dalam modal
+    document.getElementById('detail-pesanan').innerHTML = `
+        <strong>Nama:</strong> ${nama}<br>
+        <strong>Tanggal:</strong> ${tgl}<br>
+        <strong>Kebutuhan:</strong> ${keb}
+    `;
+
+    // Munculkan Modal
+    document.getElementById('payment-modal').style.display = 'flex';
+}
+
+function tutupPembayaran() {
+    document.getElementById('payment-modal').style.display = 'none';
+}
+
+function konfirmasiBayar() {
+    const nama = document.getElementById('nama').value;
+    const tgl = document.getElementById('tgl').value;
+
+    // Pesan WhatsApp konfirmasi pembayaran
+    const pesan = `Halo Admin Papan Tinggi,%0A%0ASaya SUDAH TRANSFER untuk reservasi:%0ANama: ${nama}%0ATanggal: ${tgl}%0A%0AMohon verifikasi pesanan saya.`;
+    
+    window.open(`https://wa.me/6285361708714?text=${pesan}`, '_blank');
+    tutupPembayaran();
+}  
+</script>
+</body>
+</html>

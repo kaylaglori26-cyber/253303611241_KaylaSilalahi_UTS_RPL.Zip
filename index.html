@@ -1,0 +1,1325 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Tugas RPL — Papan Tinggi | [Kayla Natalin Glori Silalahi]</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"/>
+    <style>
+      :root {
+  --hijau-tua: #8325a5;
+  --hijau: #a4148e;
+  --hijau-muda: #84249a;
+  --kuning: #f4a261;
+  --krem: #fefae0;
+  --coklat: #774936;
+  --putih: #ffffff;
+  --abu: #f0ebe3;
+  --teks: #1c1c1c;
+}
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Lato', sans-serif;
+  background: var(--krem);
+  color: var(--teks);
+  line-height: 1.7;
+}
+
+/* COVER */
+.cover {
+  background: linear-gradient(135deg, var(--hijau-tua) 0%, var(--hijau) 60%, var(--hijau-muda) 100%);
+  color: #fff;
+  padding: 80px 40px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.cover::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+.cover-badge {
+  display: inline-block;
+  background: rgba(255, 255, 255, .15);
+  border: 1px solid rgba(255, 255, 255, .3);
+  padding: 6px 18px;
+  border-radius: 50px;
+  font-size: .75rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+
+.cover h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 900;
+  line-height: 1.2;
+  margin-bottom: 16px;
+}
+
+.cover h1 span {
+  color: var(--kuning);
+}
+
+.cover p {
+  font-size: 1.05rem;
+  opacity: .85;
+  max-width: 600px;
+  margin: 0 auto 32px;
+}
+
+.identity-card {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 6px;
+  background: rgba(255, 255, 255, .12);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, .2);
+  border-radius: 16px;
+  padding: 20px 40px;
+  text-align: left;
+}
+
+.identity-card .label {
+  font-size: .7rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  opacity: .6;
+}
+
+.identity-card .value {
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+/* NAV */
+nav {
+  background: var(--hijau-tua);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  padding: 0 24px;
+}
+
+nav ul {
+  display: flex;
+  list-style: none;
+  overflow-x: auto;
+  gap: 4px;
+  padding: 0;
+}
+
+nav ul li a {
+  display: block;
+  padding: 14px 16px;
+  color: rgba(255, 255, 255, .7);
+  text-decoration: none;
+  font-size: .8rem;
+  letter-spacing: .5px;
+  white-space: nowrap;
+  transition: all .2s;
+  border-bottom: 3px solid transparent;
+}
+
+nav ul li a:hover,
+nav ul li a.active {
+  color: #fff;
+  border-bottom-color: var(--kuning);
+}
+
+/* SECTIONS */
+.section {
+  padding: 60px 0;
+  border-bottom: 1px solid #e0d9cc;
+}
+
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.section-label {
+  display: inline-block;
+  background: var(--hijau);
+  color: #fff;
+  font-size: .7rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 4px 12px;
+  border-radius: 4px;
+  margin-bottom: 12px;
+}
+
+.section h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  color: var(--hijau-tua);
+  margin-bottom: 24px;
+  line-height: 1.3;
+}
+
+.section h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--hijau);
+  margin: 28px 0 10px;
+  border-left: 4px solid var(--hijau-muda);
+  padding-left: 12px;
+}
+
+/* CARDS */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+  margin: 20px 0;
+}
+
+.card {
+  background: #fff;
+  border-radius: 16px;
+  padding: 24px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, .06);
+  border: 1px solid #e8e0d4;
+  transition: transform .2s, box-shadow .2s;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, .1);
+}
+
+.card-icon {
+  font-size: 2rem;
+  margin-bottom: 12px;
+}
+
+.card h4 {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: var(--hijau-tua);
+}
+
+.card p {
+  font-size: .88rem;
+  color: #555;
+}
+
+/* TABLES */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0;
+  font-size: .88rem;
+}
+
+th {
+  background: var(--hijau-tua);
+  color: #fff;
+  padding: 10px 14px;
+  text-align: left;
+  font-weight: 600;
+}
+
+td {
+  padding: 10px 14px;
+  border-bottom: 1px solid #e8e0d4;
+}
+
+tr:nth-child(even) td {
+  background: #f9f6ef;
+}
+
+tr:hover td {
+  background: #f0ebe3;
+}
+
+/* BADGE */
+.badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 20px;
+  font-size: .75rem;
+  font-weight: 700;
+}
+
+.badge-green {
+  background: #d4edda;
+  color: #155724;
+}
+
+.badge-yellow {
+  background: #fff3cd;
+  color: #856404;
+}
+
+.badge-red {
+  background: #f8d7da;
+  color: #721c24;
+}
+
+/* INFO BOX */
+.info-box {
+  background: linear-gradient(135deg, #e8f5e9, #f1f8e9);
+  border-left: 4px solid var(--hijau-muda);
+  border-radius: 0 12px 12px 0;
+  padding: 20px 24px;
+  margin: 20px 0;
+}
+
+.warn-box {
+  background: #fff8e1;
+  border-left: 4px solid var(--kuning);
+  border-radius: 0 12px 12px 0;
+  padding: 20px 24px;
+  margin: 20px 0;
+}
+
+/* UML AREA */
+.uml-wrap {
+  background: #fff;
+  border: 2px solid #e8e0d4;
+  border-radius: 16px;
+  padding: 24px;
+  margin: 20px 0;
+  overflow-x: auto;
+}
+
+.uml-wrap svg {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+/* REFLEKSI */
+.refleksi-box {
+  background: linear-gradient(135deg, var(--hijau-tua), var(--hijau));
+  color: #fff;
+  border-radius: 20px;
+  padding: 40px;
+  margin: 20px 0;
+}
+
+.refleksi-box p {
+  opacity: .9;
+  line-height: 1.8;
+  margin-bottom: 16px;
+}
+
+.refleksi-box h3 {
+  color: var(--kuning);
+  margin: 24px 0 10px;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem;
+}
+
+/* HARGA TABLE */
+.harga-section {
+  background: #fff;
+  border-radius: 16px;
+  padding: 24px;
+  margin: 16px 0;
+  border: 1px solid #e8e0d4;
+}
+
+.harga-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem;
+  color: var(--hijau-tua);
+  margin-bottom: 16px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.price-tag {
+  background: var(--kuning);
+  color: var(--hijau-tua);
+  font-weight: 900;
+  padding: 2px 10px;
+  border-radius: 6px;
+  font-size: .9rem;
+}
+
+/* FOOTER */
+footer {
+  background: var(--hijau-tua);
+  color: rgba(255, 255, 255, .7);
+  text-align: center;
+  padding: 32px;
+  font-size: .85rem;
+}
+
+footer strong {
+  color: #fff;
+}
+
+@media(max-width:600px) {
+  .cover {
+    padding: 50px 20px;
+  }
+  .identity-card {
+    padding: 16px 24px;
+  }
+}
+/* Update di style.css */
+:root {
+  --ungu-tua: #3c096c;
+  --ungu-muda: #7b2cbf;
+  --kuning-aksen: #ff9e00;
+}
+
+.activity-container {
+  padding: 20px;
+  background-color: #ffffff; /* Latar belakang dasar putih agar bersih */
+  border-radius: 12px;
+}
+
+.swimlane-wrapper {
+  display: flex;
+  border: 2px solid var(--ungu-tua);
+  border-radius: 10px;
+  position: relative;
+  overflow: hidden;
+}
+
+.swimlane {
+  flex: 1;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  position: relative;
+  /* Warna sangat transparan agar TIDAK MENUTUPI garis panah */
+  background-color: rgba(123, 44, 191, 0.05); 
+}
+
+.swimlane:nth-child(even) {
+  /* Variasi warna sedikit berbeda tapi tetap transparan */
+  background-color: rgba(60, 9, 108, 0.08);
+}
+
+.node {
+  background-color: var(--ungu-muda);
+  color: white;
+  padding: 10px 15px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  width: 170px;
+  text-align: center;
+  border: 1px solid var(--ungu-tua);
+  z-index: 5; /* Memaksa kotak berada di lapisan paling depan */
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.arrow {
+  width: 2px;
+  height: 30px;
+  background-color: var(--ungu-tua);
+  z-index: 2; /* Garis panah berada di bawah kotak tapi di atas background */
+}
+/* --- ACTIVITY DIAGRAM PROFESSIONAL --- */
+.ad-container {
+    background-color: #ffffff;
+    border: 2px solid var(--ungu-tua);
+    border-radius: 12px;
+    display: flex;
+    padding: 20px;
+    gap: 0;
+    overflow: hidden;
+}
+
+.ad-lane {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+    background-color: rgba(123, 44, 191, 0.03); /* Ungu sangat transparan */
+}
+
+.ad-lane:first-child { border-right: 2px dashed var(--ungu-tua); }
+
+/* Elemen Aktivitas */
+.ad-node {
+    background-color: var(--ungu-muda);
+    color: white;
+    padding: 12px 15px;
+    border-radius: 6px;
+    width: 180px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: bold;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    z-index: 5;
+}
+
+/* Panah yang Tajam dan Pasti Muncul */
+.ad-arrow {
+    width: 2px;
+    height: 35px;
+    background-color: var(--ungu-tua);
+    position: relative;
+    margin: 5px 0;
+    z-index: 2;
+}
+
+.ad-arrow::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: -4px;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 8px solid var(--ungu-tua); /* Kepala Panah */
+}
+
+/* Titik Mulai & Selesai */
+.ad-start { width: 20px; height: 20px; background: #000; border-radius: 50%; }
+.ad-end {
+    width: 24px; height: 24px; border: 2px solid #000; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+}
+.ad-end-inner { width: 14px; height: 14px; background: #000; border-radius: 50%; }
+
+
+    </style>
+</head>
+<body>
+
+<div class="cover">
+  <div class="cover-badge">Tugas Individu · Rekayasa Perangkat Lunak · Semester 2</div>
+  <h1>Studi Kasus:<br><span>Wisata Religi Papan Tinggi</span></h1>
+  <p>Membangun Perangkat Lunak Berbasis Potensi Lokal — Mengangkat Keindahan Wisata Religi Melalui Teknologi Digital</p>
+  <div class="identity-card">
+    <div><span class="label">Nama Lengkap</span><br><span class="value">Kayla Natalin G. Silalahi</span></div>
+    <div><span class="label">NIM</span><br><span class="value">253303611241</span></div>
+    <div><span class="label">Kelas</span><br><span class="value">Teknik Informatika Pagi A</span></div>
+    <div><span class="label">Mata Kuliah</span><br><span class="value">Rekayasa Perangkat Lunak</span></div>
+  </div>
+</div>
+
+<nav>
+  <ul>
+    <li><a href="#soal1">Soal 1 · Potensi Lokal</a></li>
+    <li><a href="#soal2">Soal 2 · Analisis Kebutuhan</a></li>
+    <li><a href="#soal3">Soal 3 · Arsitektur</a></li>
+    <li><a href="#soal4">Soal 4 · Use Case</a></li>
+    <li><a href="#soal5">Soal 5 · Activity</a></li>
+    <li><a href="#soal6">Soal 6 · Class Diagram</a></li>
+    <li><a href="#soal7">Soal 7 · Prototipe</a></li>
+    <li><a href="#soal8">Soal 8 · Refleksi</a></li>
+  </ul>
+</nav>
+
+<section class="section" id="soal1">
+<div class="container">
+  <span class="section-label">Bagian A · Soal 1</span>
+  <h2>Identifikasi Potensi Lokal</h2>
+
+  <h3>Nama & Deskripsi Potensi</h3>
+  <p><strong>Papan Tinggi</strong> adalah wisata religi dan sejarah berupa kompleks pemakaman Islam kuno yang terletak di puncak bukit Desa Pananggahan. Wisata ini menjadi destinasi ziarah untuk menghormati Syekh Mahmud Al-Muhtazam (Syekh Mahmud Al-Hadhrami) yang berasal dari Yaman. Pengunjung harus mendaki sekitar 710 anak tangga untuk mencapai puncak yang berada di ketinggian 215 mdpl dengan pemandangan indah.</p>
+
+  <h3>Lokasi & Asal Daerah</h3>
+  <div class="info-box">
+    <strong>📍 Lokasi:</strong> Makam Papan Tinggi berlokasi di Desa Pananggahan, Kecamatan Barus Utara, Kabupaten Tapanuli Tengah, Sumatera Utara (kode pos 22564). Makam ini berada di atas bukit, dapat diakses melalui jalan darat dengan menaiki kurang lebih 700 hingga 1.000 anak tangga. https://maps.apple/p/ogjMszSsqY9L1e
+  </div>
+
+  <h3>Daftar Harga Resmi Papan Tinggi</h3>
+
+  <div class="harga-section">
+    <div class="harga-title">🎫 Tiket Parkir <span class="price-tag">Per Kendaraan</span></div>
+    <table>
+      <thead><tr><th>Jenis Kendaraan</th><th>Harga Tiket</th><th></th></tr></thead>
+      <tbody>
+        <tr><td>🏍️ Sepeda Motor</td><td><strong>Rp 5.000</strong></td><td>
+        <tr><td>🚗 Mobil / SUV</td><td><strong>Rp 10.000</strong></td><td>
+        <tr><td>🚐 Minibus / ELF</td><td><strong>Rp 15.000</strong></td><td>
+        <tr><td>🚌 Bus Pariwisata</td><td><strong>Rp 20.000</strong></td><td>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="harga-section">
+    <div class="harga-title">🍽️ Menu Makanan & Minuman <span class="price-tag">Warung Papan Tinggi</span></div>
+    <table>
+      <thead><tr><th>Menu</th><th>Harga</th><th>Kategori</th></tr></thead>
+      <tbody>
+        <tr><td>Nasi Gurih</td><td><strong>Rp 12.000</strong></td><td>Makanan Berat</td></tr>
+        <tr><td>Lontong</td><td><strong>Rp 12.000</strong></td><td>Makanan Berat</td></tr>
+        <tr><td>Mie Gomak</td><td><strong>Rp 10.000</strong></td><td>Makanan Berat</td></tr>
+        <tr><td>Gado-Gado</td><td><strong>Rp 15.000</strong></td><td>Makanan Berat</td></tr>
+        <tr><td>Indomie Goreng/Rebus</td><td><strong>Rp 15.000</strong></td><td>Camilan</td></tr>
+        <tr><td>Kopi Hitam / Kopi Susu</td><td><strong>Rp 8.000</strong></td><td>Minuman</td></tr>
+        <tr><td>Teh Manis Panas/Dingin</td><td><strong>Rp 5.000</strong></td><td>Minuman</td></tr>
+        <tr><td>Air Mineral Botol</td><td><strong>Rp 5.000</strong></td><td>Minuman</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Mengapa Belum Dikenal Luas?</h3>
+  <div class="card-grid">
+    <div class="card"><div class="card-icon">📵</div><h4>Minim Kehadiran Digital</h4><p>Papan Tinggi sudah mulai dalam proses perkembangan,tetapi banyak pengunjung yang tidak mengekspos dan juga ada yang mengekspos tetapi tidak FYP.</p></div>
+    <div class="card"><div class="card-icon">📋</div><h4>Informasi Tidak Terstruktur</h4><p>Informasi harga, fasilitas, dan cara pemesanan hanya diketahui dari mulut ke mulut, sehingga banyak pengunjung potensial tidak mendapat informasi yang akurat.</p></div>
+    <div class="card"><div class="card-icon">🚫</div><h4>Belum Ada Reservasi Online</h4><p>Pengunjung harus datang langsung untuk mengetahui ketersediaan parkir kendaraan, yang membuat kadang tidak mendapatkan tempat.</p></div>
+  </div>
+
+  <h3>Dampak Jika Dipromosikan Secara Digital</h3>
+  <ul style="margin-left:20px;margin-top:10px;line-height:2;">
+    <li>Jangkauan pengunjung meluas ke luar daerah, bahkan wisatawan mancanegara.</li>
+    <li>Pendapatan pengelola dan UMKM sekitar meningkat signifikan.</li>
+    <li>Kearifan lokal dan keindahan alam daerah terdokumentasi dan terjaga.</li>
+    <li>Sistem reservasi online mengurangi antrian dan meningkatkan kepuasan pengunjung.</li>
+  </ul>
+
+  <h3>Target Pengguna Utama</h3>
+   <div class="card-grid">
+    <div class="card"><div class="card-icon"></div><h4>Wisatawan</h4><p>Pengunjung yang datang untuk menikmati pemandangan alam dari atas bukit setelah menaiki seribu anak tangga.</p></div>
+    <div class="card"><div class="card-icon"></div><h4>Admin Pengelola</h4><p>Pengelola wisata yang membutuhkan sistem manajemen konten dan reservasi yang mudah.</p></div>
+  </div>
+</div>
+</section>
+<section class="section" id="soal2">
+<div class="container">
+  <span class="section-label">Bagian A · Soal 2</span>
+  <h2>Analisis Kebutuhan Sistem</h2>
+
+  <h3>1. Kebutuhan Fungsional (Functional Requirements)</h3>
+  <p>Berikut adalah daftar fitur utama yang harus tersedia dalam sistem <strong>PapanTinggi.id</strong> untuk mendukung operasional harian:</p>
+  
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Fitur Utama</th>
+        <th>Deskripsi Spesifik</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>F01</strong></td>
+        <td><strong>Manajemen Tiket</strong></td>
+        <td>Sistem menampilkan tabel harga tiket parkir berdasarkan jenis kendaraan secara real-time yang dapat diperbarui oleh Admin.</td>
+      </tr>
+      <tr>
+        <td><strong>F02</strong></td>
+        <td><strong>Katalog Kuliner</strong></td>
+        <td>Daftar menu lengkap dari warung Papan Tinggi yang dikelompokkan menjadi Makanan Berat, dan Minuman.</td>
+      </tr>
+      <tr>
+        <td><strong>F03</strong></td>
+        <td><strong>Galeri Multimedia</strong></td>
+        <td>Menampilkan foto dan video suasana Papan Tinggi dengan fitur filter kategori (pemandangan, fasilitas, kuliner).</td>
+      </tr>
+      <tr>
+        <td><strong>F04</strong></td>
+        <td><strong>Integrasi WhatsApp</strong></td>
+        <td>Tombol tautan langsung ke WhatsApp pengelola untuk layanan bantuan cepat kepada pengunjung.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>2. Kebutuhan Non-Fungsional</h3>
+  <div class="card-grid">
+    <div class="card">
+      <div class="card-icon">⚡</div>
+      <h4>Performa</h4>
+      <p>Halaman utama harus termuat penuh dalam waktu ≤ 3 detik pada koneksi 4G dengan optimasi gambar format WebP.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🔒</div>
+      <h4>Keamanan</h4>
+      <p>Menggunakan protokol HTTPS, validasi input formulir, dan proteksi CSRF untuk mencegah serangan siber sederhana.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">📱</div>
+      <h4>Responsivitas</h4>
+      <p>Antarmuka harus adaptif (Mobile Friendly) untuk diakses melalui smartphone, tablet, maupun desktop secara nyaman.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🌐</div>
+      <h4>Ketersediaan</h4>
+      <p>Sistem tersedia 24/7 dengan target uptime minimal 99% agar pengunjung bisa melakukan reservasi kapan saja.</p>
+    </div>
+  </div>
+
+  <h3>3. Peran Pengguna (User Roles)</h3>
+  <p>Sistem ini memiliki dua kategori pengguna dengan hak akses yang berbeda:</p>
+  
+  <table>
+    <thead>
+      <tr>
+        <th>Role</th>
+        <th>Hak Akses (Privilege)</th>
+        <th>Batasan (Restriction)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="badge badge-red">Admin</span></td>
+        <td>Login dashboard, mengelola semua konten (CRUD), verifikasi bukti transfer, dan melihat laporan kunjungan.</td>
+        <td>Memerlukan autentikasi username dan password khusus untuk akses back-end.</td>
+      </tr>
+      <tr>
+        <td><span class="badge badge-green">Pengunjung</span></td>
+        <td>Melihat informasi wisata, melakukan reservasi online, mengirim pesan kontak, dan melihat lokasi Maps.</td>
+        <td>Tidak memiliki akses ke dashboard pengelola atau database sistem.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+</section>
+
+<!-- ===== SOAL 3: KONSEP & ARSITEKTUR PERANGKAT LUNAK ===== -->
+<section class="section" id="soal3">
+<div class="container">
+  <span class="section-label">Bagian B · Soal 3</span>
+  <h2>Konsep & Arsitektur Perangkat Lunak</h2>
+
+  <!-- Identitas & Filosofi -->
+  <h3>1. Nama Aplikasi & Filosofi</h3>
+  <div class="info-box">
+    <h4 style="font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--hijau-tua);">PapanTinggi.id</h4>
+    <p style="margin-top:8px;">
+      <strong>Filosofi Penamaan:</strong> Nama <em></em> Makam Papan Tinggi di Desa Pananggahan, Barus, merujuk pada letak makam Syekh Mahmud Al-Muntazam yang berada di puncak bukit (tinggi) dan penggunaan nisan berbahan papan batu kuno. Ekstensi <strong>.id</strong> menegaskan identitas digital Indonesia yang terpercaya.
+    </p>
+  </div>
+
+  <!-- Visi & Misi -->
+  <div class="card-grid">
+    <div class="card">
+      <div class="card-icon">🎯</div>
+      <h4>Visi</h4>
+      <p>Menjadi platform digital terpercaya untuk memperkenalkan keindahan Papan Tinggi ke kancah nasional dan internasional.</p>
+    </div>
+    <div class="card">
+      <div class="card-icon">🚀</div>
+      <h4>Misi</h4>
+      <p>Menyediakan informasi akurat, mempermudah reservasi online, dan mendorong pertumbuhan ekonomi kreatif di Desa Pananggahan.</p>
+    </div>
+  </div>
+
+  <!-- Teknologi (Tech Stack) -->
+  <h3>2. Arsitektur Teknologi (Tech Stack)</h3>
+  <p>Untuk membangun sistem yang stabil dan responsif, berikut adalah teknologi yang direncanakan:</p>
+  
+  <table>
+    <thead>
+      <tr>
+        <th>Layer</th>
+        <th>Teknologi</th>
+        <th>Alasan Pemilihan</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>Front-End</strong></td>
+        <td>HTML5, CSS3, JavaScript</td>
+        <td>Standar web modern untuk menciptakan antarmuka yang interaktif dan responsif.</td>
+      </tr>
+      <tr>
+        <td><strong>Back-End</strong></td>
+        <td>PHP 8 (Framework Laravel)</td>
+        <td>Memiliki keamanan tinggi (perlindungan SQL injection) dan ekosistem yang luas.</td>
+      </tr>
+      <tr>
+        <td><strong>Database</strong></td>
+        <td>MySQL</td>
+        <td>Sangat stabil untuk menyimpan data reservasi dan manajemen konten wisata.</td>
+      </tr>
+      <tr>
+        <td><strong>Hosting</strong></td>
+        <td>Cloud VPS / Shared Hosting</td>
+        <td>Menjamin website dapat diakses dengan cepat dari mana saja di Indonesia.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Alur Kerja -->
+  <h3>3. Alur Kerja Sistem (Workflow)</h3>
+  <div class="warn-box">
+    <ol style="margin-left:20px; line-height:1.8;">
+      <li><strong>Akses:</strong> Pengunjung membuka website PapanTinggi.id.</li>
+      <li><strong>Eksplorasi:</strong> Pengunjung melihat informasi tiket, dan menu kuliner.</li>
+      <li><strong>Reservasi:</strong> Pengunjung mengisi formulir booking dan mengunggah bukti DP.</li>
+      <li><strong>Validasi:</strong> Admin memeriksa data dan mengubah status reservasi di dashboard.</li>
+      <li><strong>Konfirmasi:</strong> Sistem mengirimkan notifikasi sukses kepada pengunjung.</li>
+    </ol>
+  </div>
+</div>
+</section>
+
+<section class="section" id="soal4">
+<div class="container">
+  <span class="section-label" style="background: var(--hijau-muda); color: white;">Bagian B · Soal 4</span>
+  <h2>Tahapan Pengembangan Use Case</h2>
+  <p>Silakan klik tombol tahapan di bawah ini untuk melihat detail identifikasi sistem <strong>Papan Tinggi.id</strong>:</p>
+
+  <style>
+    /* CSS Khusus untuk Tab Interaktif Tema Hijau */
+    .tab-green-container { 
+      margin-top: 30px; 
+      border: 1px solid var(--hijau-muda); 
+      border-radius: 12px; 
+      overflow: hidden; 
+      background: #fff; 
+      box-shadow: 0 4px 15px rgba(45, 106, 79, 0.1);
+    }
+    .tab-green-buttons { display: flex; background: var(--hijau-tua); overflow-x: auto; }
+    .tab-green-btn { 
+      padding: 15px 25px; border: none; background: none; color: rgba(255,255,255,0.7); cursor: pointer; 
+      font-weight: bold; font-size: 0.85rem; transition: 0.3s; white-space: nowrap; flex: 1;
+    }
+    .tab-green-btn:hover { background: var(--hijau); color: #fff; }
+    .tab-green-btn.active { background: var(--hijau-muda); color: #fff; border-bottom: 4px solid var(--kuning); }
+    
+    .tab-green-content { padding: 30px; display: none; animation: fadeInGreen 0.5s; }
+    .tab-green-content.active { display: block; }
+
+    @keyframes fadeInGreen { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    
+    .step-title-green { color: var(--hijau-tua); margin-bottom: 15px; border-bottom: 2px solid var(--hijau-muda); padding-bottom: 10px; }
+    
+    .card-green {
+      background: #f1f8f5;
+      border-left: 4px solid var(--hijau);
+      padding: 15px;
+      border-radius: 0 8px 8px 0;
+      margin-bottom: 15px;
+    }
+    .card-green h4 { color: var(--hijau-tua); margin-bottom: 5px; }
+  </style>
+
+  <div class="tab-green-container">
+    <div class="tab-green-buttons">
+      <button class="tab-green-btn active" onclick="openStepUC(event, 'uc-step1')">STEP 1: DESKRIPSI</button>
+      <button class="tab-green-btn" onclick="openStepUC(event, 'uc-step2')">STEP 2: AKTOR</button>
+      <button class="tab-green-btn" onclick="openStepUC(event, 'uc-step3')">STEP 3: USE CASE</button>
+      <button class="tab-green-btn" onclick="openStepUC(event, 'uc-step4')">STEP 4: HUBUNGAN</button>
+      <button class="tab-green-btn" onclick="openStepUC(event, 'uc-step5')">STEP 5: DIAGRAM</button>
+    </div>
+
+    <div id="uc-step1" class="tab-green-content active">
+      <h3 class="step-title-green">Langkah 1: Deskripsi Sistem</h3>
+      <div class="info-box" style="border-left-color: var(--hijau);">
+        <p>Sistem Informasi Pariwisata <strong>PapanTinggi.id</strong> adalah platform berbasis web yang bertujuan untuk mendigitalisasi layanan di objek wisata Religi Papan Tinggi. Fokus utama sistem adalah mengelola reservasi tiket, kuliner, serta penyampaian informasi fasilitas secara real-time.Situs Papan Tinggi Barus (Makam Syekh Mahmud) merupakan salah satu destinasi wisata religi dan sejarah paling ikonik di Kabupaten Tapanuli Tengah (Tapteng), Sumatera Utara. Situs ini terletak di perbukitan Desa Pananggahan, Kecamatan Barus Utara.</p>
+      </div>
+    </div>
+
+    <div id="uc-step2" class="tab-green-content">
+      <h3 class="step-title-green">Langkah 2: Identifikasi Aktor</h3>
+      <div class="card-grid">
+        <div class="card-green">
+          <span class="badge" style="background: var(--hijau-tua); color: white;">Aktor Eksternal</span>
+          <h4 style="margin-top:10px;">Wisatawan</h4>
+          <p>Pengunjung yang datang dengan motivasi rekreasi,fotografi,atau sekedar menikmati pemandangan alam.Fasilitas yang nyaman(tangga yang aman,toilet,spot foto),informasi sejarah singkat,dan kebersihan lokasi.Melakukan pendakian,membayar retribusi/parkir,dan mematuhi tata tertib pendakian.</p>
+        </div>
+        <div class="card-green">
+          <span class="badge" style="background: var(--hijau); color: white;">Aktor Internal</span>
+          <h4 style="margin-top:10px;">Admin</h4>
+          <p>Mengelola ketersediaan slot, verifikasi bayar, dan update konten web.Mengelola operasional harian,dan memperbarui informasi terkait situs.</p>
+        </div>
+      </div>
+    </div>
+
+    <div id="uc-step3" class="tab-green-content">
+      <h3 class="step-title-green">Langkah 3: Identifikasi Use Case</h3>
+      <div class="card-grid">
+        <div class="card" style="border-top: 3px solid var(--hijau);">
+          <h4>Fungsi Wisatawan</h4>
+          <ul style="font-size:0.85rem; padding-left:15px; color: var(--teks);">
+            <li>Mencari Informasi Situs</li>
+            <li>Melihat Profil Potensi</li>
+            <li>Buka Peta Lokasi</li>
+            <li>Pesan Tiket</li>
+          </ul>
+        </div>
+        <div class="card" style="border-top: 3px solid var(--hijau-tua);">
+          <h4>Fungsi Admin</h4>
+          <ul style="font-size:0.85rem; padding-left:15px; color: var(--teks);">
+            <li>Login</li>
+            <li>Kelola Produk</li>
+            <li>Hapus Menu</li>
+            <li>Unggah Foto</li>
+            <li>Menerima Pemesanan Tiket</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div id="uc-step4" class="tab-green-content">
+      <h3 class="step-title-green">Langkah 4: Hubungan (Association)</h3>
+      <table style="width: 100%; border-collapse: collapse;">
+        <tr style="background: var(--hijau-tua); color: white;">
+          <th style="padding: 10px;">Tipe</th>
+          <th style="padding: 10px;">Keterangan</th>
+        </tr>
+        <tr style="background: #f9f9f9;">
+          <td style="padding: 10px;"><strong>Include</strong></td>
+          <td style="padding: 10px;">Include digunakan ketika sebuah use case dasar membutuhkan fungsi lain agar bisa berjalan. Tanpa fungsi yang di-include, use case utama tidak valid.</td>
+        </tr>
+        <tr>
+          <td style="padding: 10px;"><strong>Extend</strong></td>
+          <td style="padding: 10px;">Extend digunakan untuk fungsi tambahan yang hanya terjadi dalam kondisi tertentu. Fungsi ini tidak wajib dilakukan setiap saat.</td>
+        </tr>
+      </table>
+    </div>
+
+   <div id="uc-step5" class="tab-green-content">
+      <h3 class="step-title-green">Langkah 5: Use Case Diagram Visual</h3>
+       <div class="uml-wrap">    
+         <div class="gallery-grid">
+            <div class="gal-item"><img src="Use Case Diagram.png"></div>
+          <line x1="80" y1="150" x2="220" y2="90" stroke="#999" stroke-width="1.5"/>
+          <line x1="80" y1="165" x2="220" y2="170" stroke="#999" stroke-width="1.5"/>
+          <line x1="520" y1="165" x2="380" y2="250" stroke="#999" stroke-width="1.5"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function openStepUC(evt, stepId) {
+      var i, content, btns;
+      content = document.getElementsByClassName("tab-green-content");
+      for (i = 0; i < content.length; i++) { content[i].classList.remove("active"); }
+      btns = document.getElementsByClassName("tab-green-btn");
+      for (i = 0; i < btns.length; i++) { btns[i].classList.remove("active"); }
+      document.getElementById(stepId).classList.add("active");
+      evt.currentTarget.classList.add("active");
+    }
+  </script>
+</div>
+</section>
+
+<!-- Bagian Dokumentasi Use Case -->
+<section style="padding: 20px; font-family: 'Inter', sans-serif; background-color: #fdfaf5;">
+    <h2 style="color: #2d4739; border-left: 5px solid #7d9432; padding-left: 15px; margin-bottom: 20px;">
+        Tabel Deskripsi Use Case
+    </h2>
+
+    <div style="overflow-x: auto; box-shadow: 0 4px 15px rgba(0,0,0,0.1); border-radius: 10px;">
+        <table style="width: 100%; border-collapse: collapse; background-color: white;">
+            <thead>
+                <tr style="background-color: #2d4739; color: white; text-align: left;">
+                    <th style="padding: 15px; border: 1px solid #3e5a4a;">Nama Use Case</th>
+                    <th style="padding: 15px; border: 1px solid #3e5a4a;">Aktor</th>
+                    <th style="padding: 15px; border: 1px solid #3e5a4a;">Deskripsi</th>
+                    <th style="padding: 15px; border: 1px solid #3e5a4a;">Pra-kondisi</th>
+                    <th style="padding: 15px; border: 1px solid #3e5a4a;">Pasca-kondisi</th>
+                </tr>
+            </thead>
+            <tbody style="color: #333; font-size: 14px;">
+                <!-- Baris 1: Mencari Info Situs -->
+                <tr>
+                    <td style="padding: 12px; border: 1px solid #eee; font-weight: bold;">Mencari Informasi Situs</td>
+                    <td style="padding: 12px; border: 1px solid #eee;">Wisatawan,Admin</td>
+                    <td style="padding: 12px; border: 1px solid #eee;">Pengguna melihat informasi profil potensi dan situs Papan Tingg.</td>
+                    <td style="padding: 12px; border: 1px solid #eee;">Website dapat diakses.</td>
+                    <td style="padding: 12px; border: 1px solid #eee;">Informasi detail ditampilkan di halaman.</td>
+                </tr>
+                <!-- Baris 2: Pesan Tiket -->
+                <tr style="background-color: #f9fbf9;">
+                    <td style="padding: 12px; border: 1px solid #eee; font-weight: bold;">Pesan Tiket (Include Pilih Jumlah)</td>
+                    <td style="padding: 12px; border: 1px solid #eee;">Wisatawan,Admin</td>
+                    <td style="padding: 12px; border: 1px solid #eee;">Pengguna mengisi form reservasi dan menentukan jumlah tiket.</td>
+                    <td style="padding: 12px; border: 1px solid #eee;">Halaman reservasi terbuka.</td>
+                    <td style="padding: 12px; border: 1px solid #eee;">Data tersimpan; status menunggu validasi admin.</td>
+                </tr>
+                <!-- Baris 3: Login -->
+                <tr>
+                    <td style="padding: 12px; border: 1px solid #eee; font-weight: bold;">Login Admin</td>
+                    <td style="padding: 12px; border: 1px solid #eee;">Admin</td>
+                    <td style="padding: 12px; border: 1px solid #eee;">Admin masuk ke sistem untuk mengelola data.</td>
+                    <td style="padding: 12px; border: 1px solid #eee;">Memiliki akun admin aktif.</td>
+                    <td style="padding: 12px; border: 1px solid #eee;">Dialihkan ke halaman dashboard admin.</td>
+                </tr>
+                <!-- Baris 4: Kelola Produk -->
+                <tr style="background-color: #f9fbf9;">
+                    <td style="padding: 12px; border: 1px solid #eee; font-weight: bold;">Kelola Produk & Foto</td>
+                    <td style="padding: 12px; border: 1px solid #eee;">Admin</td>
+                    <td style="padding: 12px; border: 1px solid #eee;">Admin menambah atau mengunggah foto produk/potensi.</td>
+                    <td style="padding: 12px; border: 1px solid #eee;">Sudah login sebagai admin.</td>
+                    <td style="padding: 12px; border: 1px solid #eee;">Data produk dan galeri foto diperbarui.</td>
+                </tr>
+                <!-- Baris 5: Hapus Menu -->
+                <tr>
+                    <td style="padding: 12px; border: 1px solid #eee; font-weight: bold;">Hapus Menu (Extend Konfirmasi)</td>
+                    <td style="padding: 12px; border: 1px solid #eee;">Admin</td>
+                    <td style="padding: 12px; border: 1px solid #eee;">Admin menghapus item menu; muncul pesan konfirmasi.</td>
+                    <td style="padding: 12px; border: 1px solid #eee;">Admin memilih item yang ingin dihapus.</td>
+                    <td style="padding: 12px; border: 1px solid #eee;">Item terhapus dari daftar publik.</td>
+                </tr>
+                <!-- Baris 6: Terima Pesanan -->
+                <tr style="background-color: #f9fbf9;">
+                    <td style="padding: 12px; border: 1px solid #eee; font-weight: bold;">Menerima Pesanan Tiket</td>
+                    <td style="padding: 12px; border: 1px solid #eee;">Admin</td>
+                    <td style="padding: 12px; border: 1px solid #eee;">Admin memproses pesanan tiket yang masuk.</td>
+                    <td style="padding: 12px; border: 1px solid #eee;">Terdapat data pesanan masuk.</td>
+                    <td style="padding: 12px; border: 1px solid #eee;">Status pesanan berubah menjadi tervalidasi.</td>
+                </tr>
+                <!-- Baris 7: Melihat Profil Potensi  -->
+                <tr style="background-color: #f9fbf9;">
+                    <td style="padding: 12px; border: 1px solid #eee; font-weight: bold;">Melihat Profil Potensi</td>
+                    <td style="padding: 12px; border: 1px solid #eee;">Wisatawan,Admin</td>
+                    <td style="padding: 12px; border: 1px solid #eee;">Pengguna melihat informasi mendalam mengenai daya tarik wisata, dan sejarah.</td>
+                    <td style="padding: 12px; border: 1px solid #eee;">Website dapat diakses. Konten profil potensi telah diterbitkan oleh admin.</td>
+                    <td style="padding: 12px; border: 1px solid #eee;">Sistem menampilkan teks deskripsi terkait potensi wisata secara lengkap.</td>
+                </tr>
+                <!-- Baris 8: Buka Peta Lokasi  -->
+                <tr style="background-color: #f9fbf9;">
+                    <td style="padding: 12px; border: 1px solid #eee; font-weight: bold;">Buka Peta Lokasi</td>
+                    <td style="padding: 12px; border: 1px solid #eee;">Wisatawan,Admin</td>
+                    <td style="padding: 12px; border: 1px solid #eee;">Pengguna membuka akses pemetaan untuk melihat titik koordinat rute menuju lokasi Papan Tinggi.</td>
+                    <td style="padding: 12px; border: 1px solid #eee;">Website dapat diakses. Perangkat pengguna memiliki koneksi internet untuk memuat data peta.</td>
+                    <td style="padding: 12px; border: 1px solid #eee;">Sistem menampilkan antarmuka peta interaktif atau statis yang menunjukkan posisi tepat objek wisata.</td>
+                </tr>
+                <!-- Baris 9: Unggah Foto  -->
+                <tr style="background-color: #f9fbf9;">
+                    <td style="padding: 12px; border: 1px solid #eee; font-weight: bold;">Unggah Foto</td>
+                    <td style="padding: 12px; border: 1px solid #eee;">Admin</td>
+                    <td style="padding: 12px; border: 1px solid #eee;">Admin mengunggah file gambar baru (produk, potensi, atau galeri) untuk ditampilkan dihalaman publik.</td>
+                    <td style="padding: 12px; border: 1px solid #eee;">Admin sudah masuk (login) ke dashboard. File foto tersedia diperangkat admin.</td>
+                    <td style="padding: 12px; border: 1px solid #eee;">Foto berhasil disimpan di server. Database diperbarui. Foto muncul dihalaman profil potensi atau galeri.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<section class="section" id="soal5">
+<div class="container">
+  <span class="section-label" style="background: var(--hijau-muda); color: white;">Bagian B · Soal 5</span>
+  <h2>Activity Diagram</h2>
+  <p>Alur yang dipilih : Wisatawan melakukan pemesanan tiket di <strong>Papan Tinggi.id</strong></p>
+
+  <div class="uml-wrap">
+    <svg viewBox="0 0 660 780" xmlns="http://www.w3.org/2000/svg" font-family="Lato,sans-serif">
+      <rect width="660" height="780" fill="#fafafa" rx="12"/>
+      <text x="330" y="32" text-anchor="middle" font-size="13" font-weight="700" fill="#1a3d2b">Activity Diagram — Alur Reservasi Wisatawan</text>
+
+      <!-- Swimlane labels -->
+      <rect x="20" y="50" width="295" height="700" fill="#e8f5e9" rx="8" opacity="0.5"/>
+      <rect x="325" y="50" width="315" height="700" fill="#fff8e1" rx="8" opacity="0.5"/>
+      <text x="165" y="72" text-anchor="middle" font-size="11" font-weight="700" fill="#2d6a4f">Wisatawan</text>
+      <text x="485" y="72" text-anchor="middle" font-size="11" font-weight="700" fill="#774936">Sistem / Admin</text>
+
+      <!-- Helper: arrow defs -->
+      <defs>
+        <marker id="arr" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto">
+          <path d="M0,0 L0,6 L8,3 z" fill="#333"/>
+        </marker>
+      </defs>
+
+      <!-- 1. Initial Node -->
+      <circle cx="165" cy="105" r="12" fill="#1a3d2b"/>
+      <line x1="165" y1="117" x2="165" y2="140" stroke="#333" stroke-width="1.5" marker-end="url(#arr)"/>
+
+      <!-- 2. Buka Situs -->
+      <rect x="80" y="140" width="170" height="36" rx="18" fill="#7b2cbf#" stroke="none"/>
+      <text x="165" y="163" text-anchor="middle" font-size="10.5" fill="#fff" font-weight="600">Mencari Informasi Situs</text>
+      <line x1="165" y1="176" x2="165" y2="202" stroke="#333" stroke-width="1.5" marker-end="url(#arr)"/>
+
+      <!-- 3. Melihat Profil -->
+      <rect x="80" y="202" width="170" height="36" rx="18" fill="#7b2cbff"/>
+      <text x="165" y="225" text-anchor="middle" font-size="10.5" fill="#fff" font-weight="600">Melihat Profil Potensi</text>
+      <line x1="165" y1="238" x2="165" y2="265" stroke="#333" stroke-width="1.5" marker-end="url(#arr)"/>
+
+      <!-- FORK -->
+      <rect x="80" y="265" width="170" height="8" rx="4" fill="#333"/>
+      <!-- Fork kiri: lihat kalender -->
+      <line x1="115" y1="273" x2="115" y2="298" stroke="#333" stroke-width="1.5" marker-end="url(#arr)"/>
+      <!-- Fork kanan: cek harga -->
+      <line x1="215" y1="273" x2="215" y2="298" stroke="#333" stroke-width="1.5" marker-end="url(#arr)"/>
+
+      <!-- Parallel A: Cek Lokasi -->
+      <rect x="50" y="298" width="130" height="36" rx="18" fill="#7b2cbf"/>
+      <text x="115" y="313" text-anchor="middle" font-size="9.5" fill="#fff" font-weight="600">Lihat Lokasi</text>
+      <text x="115" y="325" text-anchor="middle" font-size="9.5" fill="#fff" font-weight="600">Jauh/Tidak</text>
+
+      <!-- Parallel B: Pesan Tiket -->
+      <rect x="150" y="298" width="130" height="36" rx="18" fill="#7b2cbf"/>
+      <text x="215" y="313" text-anchor="middle" font-size="9.5" fill="#fff" font-weight="600">Lihat Tiket</text>
+      <text x="215" y="325" text-anchor="middle" font-size="9.5" fill="#fff" font-weight="600">Harga &amp; Fasilitas</text>
+
+      <!-- JOIN -->
+      <line x1="115" y1="334" x2="115" y2="358" stroke="#333" stroke-width="1.5"/>
+      <line x1="215" y1="334" x2="215" y2="358" stroke="#333" stroke-width="1.5"/>
+      <rect x="80" y="358" width="170" height="8" rx="4" fill="#333"/>
+      <line x1="165" y1="366" x2="165" y2="392" stroke="#333" stroke-width="1.5" marker-end="url(#arr)"/>
+
+      <!-- 4. Isi form reservasi -->
+      <rect x="80" y="392" width="170" height="36" rx="18" fill="#7b2cbf"/>
+      <text x="165" y="407" text-anchor="middle" font-size="10" fill="#fff" font-weight="600">Mengisi Form Reservasi</text>
+      <text x="165" y="420" text-anchor="middle" font-size="9.5" fill="#ddd">(tgl, no.WA, jmlh kendaraan)</text>
+      <line x1="165" y1="428" x2="165" y2="455" stroke="#333" stroke-width="1.5" marker-end="url(#arr)"/>
+
+      <!-- Decision: Data lengkap? -->
+      <polygon points="165,455 240,480 165,505 90,480" fill="#f4a261" stroke="#e76f51" stroke-width="1.5"/>
+      <text x="165" y="477" text-anchor="middle" font-size="10" font-weight="700" fill="#fff">Data</text>
+      <text x="165" y="491" text-anchor="middle" font-size="10" font-weight="700" fill="#fff">Lengkap?</text>
+
+      <!-- No -> kembali isi -->
+      <line x1="90" y1="480" x2="50" y2="480" stroke="#e53935" stroke-width="1.5"/>
+      <line x1="50" y1="480" x2="50" y2="410" stroke="#e53935" stroke-width="1.5"/>
+      <line x1="50" y1="410" x2="80" y2="410" stroke="#e53935" stroke-width="1.5" marker-end="url(#arr)"/>
+      <text x="35" y="450" font-size="9" fill="#e53935" transform="rotate(-90,35,450)">Tidak</text>
+
+      <!-- Yes -> kirim -->
+      <line x1="165" y1="505" x2="165" y2="530" stroke="#333" stroke-width="1.5" marker-end="url(#arr)"/>
+      <text x="175" y="520" font-size="9" fill="#2d6a4f">Ya</text>
+
+      <!-- 5. Kirim reservasi -->
+      <rect x="80" y="530" width="170" height="36" rx="18" fill="#7b2cbf"/>
+      <text x="165" y="553" text-anchor="middle" font-size="10.5" fill="#fff" font-weight="600">Kirim Reservasi</text>
+
+      <!-- Arrow to sistem side -->
+      <line x1="250" y1="548" x2="360" y2="548" stroke="#333" stroke-width="1.5" marker-end="url(#arr)"/>
+
+      <!-- Sistem: Simpan & Notif -->
+      <rect x="360" y="530" width="180" height="36" rx="18" fill="#3c096c"/>
+      <text x="450" y="545" text-anchor="middle" font-size="10" fill="#fff" font-weight="600">Simpan ke Database</text>
+      <text x="450" y="558" text-anchor="middle" font-size="9.5" fill="#ddd">&amp; Kirim Email Konfirmasi</text>
+      <line x1="450" y1="566" x2="450" y2="595" stroke="#333" stroke-width="1.5" marker-end="url(#arr)"/>
+
+      <!-- Admin: review -->
+      <rect x="360" y="595" width="180" height="36" rx="18" fill="#3c096c"/>
+      <text x="450" y="619" text-anchor="middle" font-size="10.5" fill="#fff" font-weight="600">Admin Tinjau Reservasi</text>
+      <line x1="450" y1="631" x2="450" y2="658" stroke="#333" stroke-width="1.5" marker-end="url(#arr)"/>
+
+      <!-- Decision: Disetujui? -->
+      <polygon points="450,658 520,680 450,702 380,680" fill="#f4a261" stroke="#e76f51" stroke-width="1.5"/>
+      <text x="450" y="677" text-anchor="middle" font-size="10" font-weight="700" fill="#fff">Disetujui?</text>
+
+      <!-- Yes path -->
+      <line x1="450" y1="702" x2="450" y2="728" stroke="#333" stroke-width="1.5" marker-end="url(#arr)"/>
+      <text x="460" y="718" font-size="9" fill="#2d6a4f">Ya</text>
+      <rect x="360" y="728" width="180" height="30" rx="15" fill="#3c096c"/>
+      <text x="450" y="748" text-anchor="middle" font-size="10" fill="#fff" font-weight="600">Notif Konfirmasi + No.Rekening</text>
+
+      <!-- Line back to pengunjung: upload bukti -->
+      <line x1="360" y1="743" x2="250" y2="743" stroke="#333" stroke-width="1.5" marker-end="url(#arr)"/>
+      <rect x="80" y="728" width="170" height="30" rx="15" fill="#3c096c"/>
+      <text x="165" y="748" text-anchor="middle" font-size="10" fill="#fff" font-weight="600">Upload Bukti Transfer (DP)</text>
+
+      <!-- Final Node -->
+      <line x1="165" y1="758" x2="165" y2="780" stroke="#333" stroke-width="1.5"/>
+      <circle cx="165" cy="768" r="10" fill="none" stroke="#1a3d2b" stroke-width="2"/>
+      <circle cx="165" cy="768" r="6" fill="#1a3d2b"/>
+
+      <!-- No path (tolak) -->
+      <line x1="380" y1="680" x2="340" y2="680" stroke="#e53935" stroke-width="1.5"/>
+      <line x1="340" y1="680" x2="340" y2="612" stroke="#e53935" stroke-width="1.5"/>
+      <line x1="340" y1="612" x2="360" y2="612" stroke="#e53935" stroke-width="1.5" marker-end="url(#arr)"/>
+      <text x="325" y="650" font-size="9" fill="#e53935" transform="rotate(-90,325,650)">Tolak</text>
+    </svg>
+  </div>
+
+  <div class="info-box">
+    <strong>Keterangan Diagram:</strong> Diagram di atas menunjukkan alur reservasi pengunjung di website Papan Tinggi. Dimulai dari pengunjung membuka Situs, melihat profil, kemudian secara paralel (Fork/Join) melihat lokasi dan harga. Setelah mengisi form, terdapat Decision Node untuk memvalidasi kelengkapan data — jika tidak lengkap, pengunjung diarahkan kembali ke form. Setelah data terkirim, sistem menyimpan ke database dan mengirimkan email notifikasi. Admin kemudian meninjau dan memutuskan persetujuan (Decision Node kedua). Jika disetujui, pengunjung mendapat konfirmasi dan nomor rekening untuk DP.
+  </div>
+</div>
+</section>
+
+<style>
+    .diagram-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 30px;
+        padding: 40px;
+        background-color: #fdfaf5;
+        font-family: 'Segoe UI', Tahoma, sans-serif;
+    }
+
+    .class-card {
+        width: 250px;
+        background: white;
+        border: 2px solid #c20acc;
+        border-radius: 8px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        overflow: hidden;
+    }
+
+    .class-header {
+        background-color: #8740a3;
+        color: white;
+        text-align: center;
+        padding: 10px;
+        font-weight: bold;
+        border-bottom: 2px solid #2d4739;
+    }
+
+    .class-body {
+        padding: 10px;
+        font-size: 0.9rem;
+    }
+
+    .section-title {
+        font-style: italic;
+        font-size: 0.8rem;
+        color: #8f119f;
+        margin-bottom: 5px;
+        border-bottom: 1px solid #eee;
+    }
+
+    .class-methods {
+        border-top: 1px solid #8f1db2;
+        padding: 10px;
+        font-size: 0.9rem;
+        background-color: #f4f9f4;
+    }
+
+    .connector-text {
+        align-self: center;
+        font-weight: bold;
+        color: #7d9432;
+    }
+</style>
+
+<section class="section" id="soal6">
+<div class="container">
+  <span class="section-label" style="background: var(--hijau-muda); color: white;">Bagian C · Soal 6</span>
+  <h2>Class Diagram</h2>
+  <p>Struktur data dengan kapasitas konten lebih luas untuk layanan <strong>PapanTinggi.id</strong>:</p>
+
+
+<div class="diagram-container">
+    <!-- Class Wisatawan -->
+    <div class="class-card">
+        <div class="class-header">Wisatawan</div>
+        <div class="class-body">
+            <div class="section-title">Atribut</div>
+            + nama: String<br>
+            + email: String
+        </div>
+        <div class="class-methods">
+            <div class="section-title">Metode</div>
+            + mencariInfo()<br>
+            + melihatProfil()<br>
+            + bukaPeta()<br>
+            + pesanTiket()
+        </div>
+    </div>
+
+    <div class="connector-text">── 1..* ──</div>
+
+    <!-- Class Tiket -->
+    <div class="class-card">
+        <div class="class-header">Tiket</div>
+        <div class="class-body">
+            <div class="section-title">Atribut</div>
+            + id_tiket: int<br>
+            + tgl_pesan: date<br>
+            + jumlah: int
+        </div>
+        <div class="class-methods">
+            <div class="section-title">Metode</div>
+            + pilihJumlah()<br>
+            + hitungTotal()
+        </div>
+    </div>
+
+    <!-- Class Admin -->
+    <div class="class-card">
+        <div class="class-header">Admin</div>
+        <div class="class-body">
+            <div class="section-title">Atribut</div>
+            + username: String<br>
+            + password: String
+        </div>
+        <div class="class-methods">
+            <div class="section-title">Metode</div>
+            + login()<br>
+            + kelolaProduk()<br>
+            + unggahFoto()<br>
+            + terimaPesanan()
+        </div>
+    </div>
+</div>
+
+<section class="section" id="soal7">
+<div class="container">
+  <span class="section-label" style="background: var(--hijau-muda); color: white;">Bagian D · Soal 7</span>
+  <h2>Prototipe Halaman Utama Website</h2>
+
+<section style="padding: 40px; font-family: 'Inter', sans-serif; background-color: #fdfaf5; color: #b51dad;">
+        
+        <!-- Box Informasi Hijau Muda -->
+        <div style="background-color: #e9f5ee; border-left: 5px solid #902aa0; padding: 25px; border-radius: 8px; margin-bottom: 25px; line-height: 1.6;">
+            Prototipe lengkap website Papan Tinggi tersedia di file <strong>protipe.html</strong>. File tersebut memuat Header/Navbar, Hero Section, Informasi Harga Tiket, Menu kuliner, Galeri, dan Footer — dalam desain responsif berbasis identitas lokal Sumatera Utara.
+        </div>
+
+       <p style="margin-bottom: 20px;">Klik tautan berikut untuk membuka prototipe di tab baru:</p>
+
+       <!-- Tombol Buka Prototipe -->
+        <a href="index2.html" target="_blank" style="display: inline-flex; align-items: center; background-color: #9620a6; color: white; padding: 12px 25px; border-radius: 30px; text-decoration: none; font-weight: 500; gap: 10px; transition: 0.3s;">
+            <span></span> Buka Prototipe Papan Tinggi &rarr;
+        </a>
+    </div>
+
+    <hr style="border: none; border-top: 1px solid #ddd; margin-bottom: 50px;">
+
+    <section class="section" id="soal8">
+<div class="container">
+  <span class="section-label" style="background: var(--hijau-muda); color: white;">Bagian D · Soal 8</span>
+  <h2>Refleksi & Rencana Pengembangan</h2>     
+        <!-- Box Gelap untuk Konten Refleksi -->
+        <div style="background-color: #b052a9; color: #fdfaf5; padding: 35px; border-radius: 12px; line-height: 1.8; box-shadow: 0 10px 20px rgba(0,0,0,0.1);">
+            <p style="margin-top: 0; font-size: 16px;">
+                <strong>Refleksi:</strong><br>
+                Makam Papan Tinggi (Makam Syekh Mahmud Barus) adalah situs ziarah sejarah yang menakjubkan, terletak di perbukitan Desa Pananggahan. Tempat ini mencerminkan akar sejarah Islam yang kuat di Barus sebagai titik awal masuknya Islam di Nusantara.Tantangan utama terletak pada penyusunan <em>logic flow</em> (Activity Diagram) yang harus sinkron dengan kebutuhan fungsional pengunjung dan admin.Akses fisik yang menantang (1000+ anak tangga) membutuhkan stamina tinggi. Minimnya fasilitas di puncak (tidak ada warung) membuat pengunjung harus mandiri, dan perlunya pengelolaan sampah yang lebih baik.
+            </p>
+            
+            <p style="margin-bottom: 0; font-size: 16px;">
+    <strong>Rencana Pengembangan:</strong><br>
+    Kedepannya, sistem ini akan dikembangkan dengan fitur pembayaran otomatis menggunakan <em>payment gateway</em>. Pemasangan eskalator di jalur menuju makam untuk membantu pengunjung, terutama lansia, mendaki perbukitan. Peningkatan Akses Jalan, Pemkab Tapteng meninjau titik nol jalan menuju Makam Papan Tinggi untuk memperbaiki aksesibilitas ke lokasi. Pengembangan Kawasan, menjadikan Makam Papan Tinggi sebagai bagian dari segitiga wisata religi sejarah di Barus (bersama situs Mahligai dan lainnya). Dukungan Pemerintah Pusat, rencana ini telah mendapat dukungan dari Menko PMK, yang dinilai dapat membuat wisata religi Barus semakin mendunia.
+            </p>
+        </div>
+    </div>
+
+</section>
+
+<footer>
+  <strong>Tugas Individu — Rekayasa Perangkat Lunak | Semester 2</strong><br>
+  <span>[Kayla Natalin G. Silalahi] · [253303611241] · [TI A]</span><br>
+  <span style="font-size:.75rem;opacity:.5;margin-top:6px;display:block;">Program Studi Teknik Informatika</span>
+</footer>
+
+<script>
+  // Active nav highlight
+const sections = document.querySelectorAll('section[id]');
+const navLinks = document.querySelectorAll('nav a');
+
+window.addEventListener('scroll', () => {
+  let cur = '';
+  sections.forEach(s => {
+    if (window.scrollY >= s.offsetTop - 80) {
+      cur = s.id;
+    }
+  });
+  
+  navLinks.forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href') === '#' + cur);
+  });
+});
+
+</script>
+</body>
+</html>
